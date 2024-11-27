@@ -1,0 +1,6 @@
+-create readme file
+-comments with JSDoc
+-Swagger
+-jest
+-tsyringe
+-docker
