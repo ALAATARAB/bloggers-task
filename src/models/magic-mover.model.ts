@@ -1,7 +1,7 @@
 import mongoose, { Model, model } from 'mongoose';
 import IModel from '../interfaces/model.interface';
 import { singleton } from 'tsyringe';
-import IMagicMoverDoc, { magicMoverStates } from '../interfaces/magic-mover.interface';
+import MagicMoverDoc, { magicMoverStates } from '../interfaces/magic-mover.interface';
 
 @singleton()
 export default class MagicMoverModel implements IModel {
@@ -28,6 +28,5 @@ export default class MagicMoverModel implements IModel {
             default: magicMoverStates.Resting
         }
     });
-    model: Model<any, any> = model<IMagicMoverDoc>('MagicMover',this.schema);
-    
+    model: Model<any, any> = model<MagicMoverDoc>('MagicMover',this.schema);
 }

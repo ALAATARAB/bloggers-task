@@ -13,4 +13,7 @@ export interface IMagicMover {
     completedMissions: number,
     state: magicMoverStates
 }
-export default interface IMagicMoverDoc extends IMagicMover, mongoose.Document{};
+/**
+ * 
+ */
+export default interface MagicMoverDoc extends IMagicMover, mongoose.Document{};

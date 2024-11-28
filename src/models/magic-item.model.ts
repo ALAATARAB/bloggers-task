@@ -1,6 +1,6 @@
 import mongoose, { Model, model } from 'mongoose';
 import IModel from '../interfaces/model.interface';
-import IMagicItemDoc from '../interfaces/magic-item.interface';
+import MagicItemDoc from '../interfaces/magic-item.interface';
 import { singleton } from 'tsyringe';
 
 @singleton()
@@ -15,6 +15,6 @@ export default class MagicItemModel implements IModel {
             required:true
         }
     });
-    model: Model<any, any> = model<IMagicItemDoc>('MagicItem',this.schema);
+    model: Model<any, any> = model<MagicItemDoc>('MagicItem',this.schema);
     
 }

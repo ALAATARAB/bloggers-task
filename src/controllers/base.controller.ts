@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import BaseService from "../services/base.service";
 import ApiError from "../utils/api-error";
+import { HttpStatusCodes } from "../utils/httpStatusCodes";
 
 export default class BaseController{
 
@@ -12,7 +13,7 @@ export default class BaseController{
     post = async(req: Request, res: Response, next: NextFunction) => {
         try {
             const resource = await this.service.post(req.body)
-            res.status(201).send(resource)
+            res.status(HttpStatusCodes.CREATED.code).send(resource)
         }
         catch(err) {
             next(err);
@@ -22,7 +23,7 @@ export default class BaseController{
     get = async(req: Request, res: Response, next: NextFunction) => {
         try {
             const resource = await this.service.get()
-            res.status(200).send(resource)
+            res.status(HttpStatusCodes.OK.code).send(resource)
         } catch (err) {
             next(err);
         }
@@ -32,10 +33,8 @@ export default class BaseController{
         try {
             const { id } = req.params
             const resource = await this.service.getById(id)
-            if(resource === null){
-                throw new ApiError("There is no resource like that", 404);
-            }
-            res.status(200).send(resource);
+            
+            res.status(HttpStatusCodes.OK.code).send(resource);
         } catch (err) {
             next(err)
         }
@@ -46,10 +45,8 @@ export default class BaseController{
             const { id } = req.params;
             const data = req.body;
             const resource = await this.service.update(id,data);
-            if(resource === null){
-                throw new ApiError("There is no resource like that", 404);
-            }
-            res.status(200).send(resource);
+            
+            res.status(HttpStatusCodes.OK.code).send(resource);
         } catch (err) {
             next(err);
         }
@@ -58,8 +55,9 @@ export default class BaseController{
     delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { id } = req.params
-            const resource = await this.service.delete(id)
-            res.status(200).send(resource);
+            const resource = await this.service.delete(id);
+            
+            res.status(HttpStatusCodes.OK.code).send(resource);
         } catch (err) {
             next(err)
         }

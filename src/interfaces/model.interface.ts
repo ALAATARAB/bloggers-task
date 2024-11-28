@@ -1,3 +1,6 @@
+/**
+ * the basic Model interface
+ */
 import mongoose from "mongoose"
 
 export default interface IModel{

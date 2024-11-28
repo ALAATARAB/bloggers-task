@@ -5,4 +5,4 @@ export interface IMagicItem  {
     weight: number
 };
 
-export default interface IMagicItemDoc extends IMagicItem, mongoose.Document{};
+export default interface MagicItemDoc extends IMagicItem, mongoose.Document{};

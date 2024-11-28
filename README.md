@@ -70,6 +70,9 @@ Movers go on quick missions to carry items around.
 
  # run as development
  npm run start:dev
+
+ # run the tests
+ npm run test
 ```
 
 ## End-Points
@@ -109,4 +112,6 @@ Movers go on quick missions to carry items around.
 
 3. Live documentation using Swagger ✅
 
-4. DI using tsyringe ✅
+4. DI using TSyringe ✅
+
+5. E2E Testing using Jest and Supertest ✅

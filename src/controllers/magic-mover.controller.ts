@@ -4,8 +4,7 @@ import { autoInjectable } from "tsyringe";
 import BaseController from "./base.controller";
 import MagicMoverService from "../services/magic-mover.service";
 import { IMagicMover } from "../interfaces/magic-mover.interface";
-
-
+import { HttpStatusCodes } from "../utils/httpStatusCodes";
 
 @autoInjectable()
 export default class MagicMoverController extends BaseController {
@@ -19,7 +18,7 @@ export default class MagicMoverController extends BaseController {
     getMostActiveMovers = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const magicMovers = await this.magicMoverService.getActiveMovers();
-            res.status(200).json({message:"Magic Mover Found",magicMovers});
+            res.status(HttpStatusCodes.OK.code).json({message:"Magic Mover Found",magicMovers});
         } catch (err) {
             next(err);
         }
@@ -31,7 +30,7 @@ export default class MagicMoverController extends BaseController {
             const magicItemIds: string[] = req.body.itemIds;
             const magicMover: IMagicMover = await this.magicMoverService.loadMagicItems(magicMoverId,magicItemIds);
             logger.info(`Magic mover with id ${magicMoverId} is in the Loading State`,{state: "Loading"});
-            res.status(200).json({message:"Magic Mover Loaded Successfully",magicMover});
+            res.status(HttpStatusCodes.OK.code).json({message:"Magic Mover Loaded Successfully",magicMover});
         } catch (err) {
             next(err);
         }
@@ -42,7 +41,7 @@ export default class MagicMoverController extends BaseController {
             const magicMoverId: string = req.params.id;
             const magicMover: IMagicMover = await this.magicMoverService.startAMission(magicMoverId);
             logger.info(`Magic mover with id ${magicMoverId} is in the On_Mission State`, {state: "On_Mission"});
-            res.status(200).json({message:"Magic Mover On a Mission Now",magicMover});
+            res.status(HttpStatusCodes.OK.code).json({message:"Magic Mover On a Mission Now",magicMover});
         } catch (err) {
             next(err);
         }
@@ -53,7 +52,7 @@ export default class MagicMoverController extends BaseController {
             const magicMoverId: string = req.params.id;
             const magicMover: IMagicMover = await this.magicMoverService.endAMission(magicMoverId);
             logger.info(`Magic mover with id ${magicMoverId} is in the Resting State`,{state: "Resting"});
-            res.status(200).json({message:"Magic Mover On Resting Mode",magicMover});
+            res.status(HttpStatusCodes.OK.code).json({message:"Magic Mover On Resting Mode",magicMover});
         } catch (err) {
             next(err);
         }
