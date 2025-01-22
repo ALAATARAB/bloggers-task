@@ -1,24 +1,25 @@
-# 🚀 Magic Transporters 🚀
+# Bloggers 🤳🏻
 
 ## Overview
 
-In the world of Magic Transporters, there are special people known as Magic
-Movers. They use nifty gadgets to move important things. Fueled by virtual magic, these
-Movers go on quick missions to carry items around.
+A space for bloggers to share their knowledge and ideas.
 
 ## Table of Contents
 
-- [🚀 Magic Transporters 🚀](#-magic-transporters-)
+- [Bloggers 🤳🏻](#bloggers-)
   - [Overview](#overview)
   - [Table of Contents](#table-of-contents)
   - [Technologies](#technologies)
   - [Project Logic](#project-logic)
   - [Installation \& Running](#installation--running)
   - [End-Points](#end-points)
-    - [Magic Movers 🦸‍♂️](#magic-movers-️)
-    - [Magic Items 🎁](#magic-items-)
+    - [Auth 🛑](#auth-)
+    - [Blogs 📃](#blogs-)
+    - [Users 🧑🏻](#users-)
     - [DOCS (Swagger) 📰](#docs-swagger-)
   - [Bonuses](#bonuses)
+    - [From Task](#from-task)
+    - [From Me](#from-me)
 
 ## Technologies
 
@@ -27,21 +28,22 @@ Movers go on quick missions to carry items around.
 - TS
 - Swagger
 - Logger by (Winston)
-- DI by (tsyringe)
 
 ## Project Logic
 
-1- Create Magic Item(s) 🎁
+1- User 🧑🏻
 
-2- Create Magic Mover(s) 🦸‍♂️
+- Register as admin by the email (<admin@gmail.com>)
+- Register as user by any email
+- Log in to get a token
+- Admins can promote a normal user to an admin
 
-- Magic Mover in the (Resting state)
+2- Blog 📃
 
-- Load Magic Mover with Magic Items (Loading state)
-
-- Start a Mission (On_Mission state)
-
-- End the Mission (Resting state)
+- Create a blog by an authorized user
+- Get Blog(s)
+- Update a Blog by the owner
+- Delete a Blog by an admin
 
 ## Installation & Running
 
@@ -50,7 +52,7 @@ Movers go on quick missions to carry items around.
 2. Clone the Repository:
 
 ```bash
- git clone https://github.com/ALAATARAB/magic-transporters.git
+ git clone https://github.com/ALAATARAB/bloggers-task.git
 ```
 
 3. Install the Dependencies:
@@ -71,31 +73,31 @@ Movers go on quick missions to carry items around.
  # run as development
  npm run start:dev
 
- # run the tests
- npm run test
 ```
 
 ## End-Points
 
-### Magic Movers 🦸‍♂️
+### Auth 🛑
 
 | HTTP Verbs | Endpoints | Action |
 | ---------- | --------- | ------ |
-| POST | /api/magic-movers | To create a magic mover |
-| POST | /api/magic-movers/load | To load a magic mover with magic item(s) |
-| POST | /api/magic-movers/start-mission/:id | To start a mission with a magic mover |
-| POST | /api/magic-movers/end-mission/:id | To end the mission with a magic mover |
-| GET | /api/magic-movers/most-completed-missions | To retrieve all magic movers sorted by completed missions (desc) |
-| GET | /api/magic-movers/:id | To retrieve a magic mover |
+| POST | /api/auth/signup | To create a user OR an admin by (<admin@gmail.com>) |
+| POST | /api/auth/login | To log with the email and get a token (in the body "*For Simplicity*") |
 
-### Magic Items 🎁
+### Blogs 📃
 
 | HTTP Verbs | Endpoints | Action |
 | ---------- | --------- | ------ |
-| POST | /api/magic-items | To create a magic item |
-| GET | /api/magic-items/load | To retrieve a magic item |
-| PATCH | /api/magic-items/start-mission/:id | To update a magic item |
-| DELETE | /api/magic-items/end-mission/:id | To delete a magic item |
+| POST | /api/blogs | To create a blog by an authorized user |
+| GET | /api/blogs | To retrieve blogs |
+| PATCH | /api/blogs/:id | To update a blog by the owner |
+| DELETE | /api/blogs/:id | To delete a blog by admins only |
+
+### Users 🧑🏻
+
+| HTTP Verbs | Endpoints | Action |
+| ---------- | --------- | ------ |
+| POST | /api/users/promote | To promote a normal user to an admin by ***admins*** |
 
 ### DOCS (Swagger) 📰
 
@@ -106,12 +108,14 @@ Movers go on quick missions to carry items around.
 
 ## Bonuses
 
-1. Good Readme file ✅
+### From Task
 
-2. Good comments using JSDoc ✅
+1. Add Swagger documentation for the API ✅
 
-3. Live documentation using Swagger ✅
+2. Implement pagination for GET /blogs. ✅
 
-4. DI using TSyringe ✅
+### From Me
 
-5. E2E Testing using Jest and Supertest ✅
+1. Logging to Database ✅
+
+2. Add some extra End-Points ✅

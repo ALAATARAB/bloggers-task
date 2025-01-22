@@ -1,10 +1,12 @@
-import magicItemRoutes from './magic-item.routes';
-import magicMoverRoutes from './magic-mover.routes';
+import userRoutes from './user.routes';
+import blogRoutes from './blog.routes';
+import authRoutes from './auth.routes';
 
 
 const mountRoutes = (app: any) => {
-    app.use('/api/magic-movers', magicMoverRoutes);
-    app.use('/api/magic-items', magicItemRoutes);
+    app.use('/api/auth', authRoutes);
+    app.use('/api/users', userRoutes);
+    app.use('/api/blogs', blogRoutes);
 }
 
 export default mountRoutes;
