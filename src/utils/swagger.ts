@@ -6,19 +6,33 @@ const options: swaggerJsdoc.Options = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "🚀 Magic Transporters 🚀",
+            title: "Bloggers 🤳🏻",
             version: "1.0.0",
-            description: "An Api Doc for End-Points"
+            description: "Api Doc for End-Points"
         },
+        components: {
+            securitySchemes: {
+                BearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [
+            {
+                BearerAuth: [],
+            },
+        ],
     },
-    apis: ['./src/routes/*.ts']
+    apis: ['./src/routes/*.ts'],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
 function swaggerDocs(app: Express) {
     /**
-     * 
+     * Api docs with swaggerUi
      */
     app.use('/api/docs',swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

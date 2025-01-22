@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
+import { HttpStatusCodes } from '../utils/httpStatusCodes';
 
 /**
  * validate if there is an error with request data(body, params)
@@ -7,7 +8,7 @@ import { validationResult } from 'express-validator';
 const validationMiddleware = (req: Request, res: Response, next: NextFunction ) => {
     let errors = validationResult(req);
     if (errors.array().length)
-        return next({message:errors.array(),statusCode:400});
+        return next({message:errors.array(),statusCode:HttpStatusCodes.BAD_REQUEST.code});
     next();
 }
 
